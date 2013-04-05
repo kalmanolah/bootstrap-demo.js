@@ -17,8 +17,7 @@
  * Twitter Bootstrap (+popover functionality) - http://twitter.github.com/bootstrap/
  *
  * Usage:
- * See the Github page @ http://kalmanolah.github.com/bootstrap-demo.js/ or the examples/
- * folder in present in the master branch for proper usage examples.
+ * See the Github page @ http://kalmanolah.github.com/bootstrap-demo.js/ for proper usage examples.
  *
  * Here's something simple:
  *     With the data api:

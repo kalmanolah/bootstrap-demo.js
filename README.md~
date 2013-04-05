@@ -28,7 +28,7 @@ You could also save the good people at Github some bandwidth by doing:
 
 Please remember to make sure that jQuery and Twitter Bootstrap (including popover functionality) are present before including this script.
 
-For usage examples, visiting the [Github page](http://kalmanolah.github.com/bootstrap-demo.js/) would be your best bet.
+For usage examples, visiting the [Github page](http://kalmanolah.github.com/bootstrap-demo.js/) would be your best bet. Alternately, you could check out the `examples/` directory of this project.
 
 Dependencies
 ------------
