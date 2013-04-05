@@ -138,19 +138,14 @@
     		
     		// Handle click
     		this.on('click.demo.data-api', function(e){
-    			// Remove demo popovers
-    			$('*').popover('destroy');
+    			// Remove demo popovers and unbind clicks
+    			$('.demo-popover').siblings().popover('destroy').unbind('.demo.data-api');
     			
     			// Remove overlay
     			$('#demo-overlay').remove();
-    			
-    			console.log('a click that\'s not unbound'); // debug
-    			
+
     			// Remove highlight from elements
     			$('.demo-highlight').removeClass('demo-highlight').removeClass('demo-highlight-background').removeClass('demo-highlight-position');
-    			
-    			// Unbind other clicks and remove popovers
-    			$('*').unbind('.demo.data-api');
     			
     			// Perform callback
     			return eval(settings.callback);
