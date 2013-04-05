@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>bootstrap-demo.js | The unofficial Bootstrap extension for demo functionality</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="bootstrap-demo.js is an unoficcial extension for Twitter Bootstrap that adds 'demo' functionality, allowing you to easily visually demonstrate proper usage of your application to its users.">
+        <meta name="author" content="Kalman Olah">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="assets/google-code-prettify/prettify.css" rel="stylesheet">
+        <style type="text/css">
+            .page-wrapper{
+                padding: 40px 0;
+            }
+        </style>
+    </head>
+    <body data-spy="scroll" data-target=".sidebar-nav">
+
+        <div class="page-wrapper">
+
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="span3">
+                        <div class="well sidebar-nav" data-spy="affix">
+                            <ul class="nav nav-list">
+                                <li class="nav-header">bootstrap-demo.js</li>
+                                <li class="active"><a href="#home">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#documentation">Docs & Examples</a></li>
+                                <li><a href="#license">License</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="span9">
+
+                        <div id="home" class="hero-unit text-center">
+                            <h1>bootstrap-demo.js</h1>
+                            <p>You've already seen it in action.</p>
+                            <p>
+                                <a href="https://github.com/kalmanolah/bootstrap-demo.js/archive/master.tar.gz" class="btn btn-large">Get the tarball <i class="icon-download-alt"></i></a>
+                                <a href="https://github.com/kalmanolah/bootstrap-demo.js/" class="btn btn-success btn-large">View it on Github <i class="icon-chevron-right"></i></a>
+                            </p>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div id="about">
+                        	<h3>What is <span class="muted">bootstrap-demo.js</span>?</h3>
+                        	<div class="row-fluid">
+	                        	<div class="span4">
+	                        		<h2>Easy.</h2>
+	                        		<p><span class="label label-important">bootstrap-demo.js</span> is a simple (and also <em class="text-error">unofficial</em>) solution to schooling those pesky end-users we've all heard about.</p>
+	                        		<p>It allows you to easily create demos and tutorials for your own applications via invocation using javascript or data-attributes.</p>
+	                        	</div>
+	                        	<div class="span4">
+	                        		<h2>Easy!</h2>
+	                        		<p>Since it's basically a combination of an overlay and Twitter Bootstrap popovers, you can use any of the default popover functionality.</p>
+	                        		<p><span class="label label-important">bootstrap-demo.js</span> also manages demo display through the use of cookies: all you need to do is provide an ID for a demo and you're set!</p>
+	                        	</div>
+	                        	<div class="span4">
+	                        		<h2>Easy?!</h2>
+	                        		<p><span class="label label-important">bootstrap-demo-js</span> allows for complete and total <del>world-domination</del> customization.</p>
+	                        		<p>
+	                        			You can entertain yourself for hours by customizing:
+	                        			<ul>
+	                        				<li>Overlay & Highlight styling</li>
+	                        				<li>Popover positioning</li>
+	                        				<li>And more!</li>
+	                        			</ul>
+	                        	</div>
+                        	</div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div id="documentation">
+                        	<h3>Getting it</h3>
+                        	<p>Clone the repo, cd to the directory and copy the minified script to wherever you actually need it to be. Standard practice, really.</p>
+<pre class="prettyprint linenums"><code>git clone git://github.com/kalmanolah/bootstrap-demo.js.git
+cp bootstrap-demo.js/src/bootstrap-demo.min.js /path/to/my/app/assets/js/</code></pre>
+<p>You could also save the good people at Github some bandwidth by doing:</p>
+<pre class="prettyprint linenums"><code>wget https://github.com/kalmanolah/bootstrap-demo.js/raw/master/src/bootstrap-demo.min.js</code></pre>
+                        	<h3>Using it</h3>
+                        	<p>There are two ways for you to use bootstrap-demo.js: normal script or the data api.</p>
+                        	<h4>Normal script:</h4>
+<pre class="prettyprint linenums"><code>$('#selector').demo({
+	id		: 2,
+	placement	: 'top',
+	content		: 'This is a tip with &ltstrong>html&lt/strong>',
+	title		: 'WARNING &lti class="icon-warning-sign">&lt/i>'
+});</code></pre>
+                        	<h4>Data API:</h4>
+<pre class="prettyprint linenums"><code>&ltdiv 
+	data-provide="demo" 
+	data-id="3" 
+	data-placement="bottom" 
+	data-title="ProTip (tm)" 
+	data-content="Click me!">
+	Content goes here.
+&lt/div>
+</code></pre>
+							<h3>Examples</h3>
+							<p>Here are some examples that demonstrate the full capabilities of bootstrap-demo.js.</p>
+							
+							<h4>Multiple popovers at the same time</h4>
+<pre class="prettyprint linenums"><code>$('#home .btn').demo({
+	id		: '1-1',
+	content		: 'This is the first demo!',
+	placement	: 'bottom'
+});
+
+$('#home .btn-success').demo({
+	id		: '1-2',
+	content		: 'This is the second one!',
+	placement	: 'top'
+});</code></pre>
+							<a href="#" class="btn btn-success example-1">Run</a><br><br>
+							
+							<h4>Demo chaining with callbacks</h4>
+<pre class="prettyprint linenums"><code>$('.example-2').click(function(e){
+	$('#home .btn').demo({
+		id		: '1-1',
+		content		: 'Are you ready for some chaining?',
+		placement	: 'left',
+		callback	: 'example21();'
+	});
+});
+
+function example21(){
+	$('#home .btn-success').demo({
+		id		: '1-2',
+		content		: 'Here goes...',
+		placement	: 'top',
+		callback	: 'example22();'
+	});
+	return false; // don't follow link
+}
+
+function example22(){
+	$('#about').demo({
+		id		: '1-3',
+		content		: 'Wham!',
+		placement	: 'top'
+	});
+	return false; // don't follow link
+}</code></pre>
+							<a href="#" class="btn btn-success example-2">Run</a><br><br>
+							
+							<h4>Style customization</h4>
+<pre class="prettyprint linenums"><code>$('.example-3').click(function(e){
+	$('.example-3').demo({
+		id				: '1-1',
+		title				: 'Oh boy, I\'m excited.',
+		'overlay-style'			:
+			'position: fixed;'+
+			'top:0;left:0;bottom:0;right:0;'+
+			'width:100%;height:100%;'+
+			'z-index:1040;'+
+			'background:rgba(178,45,45,0.5);',
+		'highlight-style'		:
+			'z-index:1050;'+
+			'background:rgba(255,255,255,1);'
+	});
+	return false; // don't follow link
+});</code></pre>
+							<a href="#" class="btn btn-success example-3">Run</a><br><br>
+                        </div>
+	                  
+	                    <hr>
+	                    
+	                    <div id="license">
+	                    	<h3>License</h3>
+	                        <p>bootstrap-demo.js is released under the MIT license:</p>
+<pre>
+Copyright (c) 2013 Kalman Olah
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre>
+	                    </div>    
+	                    
+                    </div><!--/span-->
+                </div><!--/row-->
+
+                <hr>
+
+                <footer>
+                    <p class="text-right">&copy; Kalman Olah 2013 - <a href="http://kalmanolah.net"><i class="icon-globe"></i></a></p>
+                </footer>
+            </div>
+
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script src="assets/google-code-prettify/prettify.js"></script>
+        <script src="src/bootstrap-demo.js"></script>
+        <script>
+        	prettyPrint();
+        	
+        	$('.example-1').click(function(e){
+        		$('#home .btn').demo({
+        			id: '1-1',
+        			content: 'This is the first demo!',
+        			placement: 'bottom',
+        			debug: true
+        		});
+
+        		$('#home .btn-success').demo({
+        			id: '1-2',
+        			content: 'This is the second one!',
+        			placement: 'top',
+        			debug: true
+        		});
+        	});
+        	
+        	$('.example-2').click(function(e){
+        		$('#home .btn').demo({
+        			id: '1-1',
+        			content: 'Are you ready for some chaining?',
+        			placement: 'left',
+        			debug: true,
+        			callback: 'example21();'
+        		});
+        	});
+        	
+        	function example21(){
+        		$('#home .btn-success').demo({
+        			id: '1-2',
+        			content: 'Here goes...',
+        			placement: 'top',
+        			debug: true,
+        			callback: 'example22();'
+        		});
+        		return false; // don't follow link
+        	}
+        	
+        	function example22(){
+        		$('#about').demo({
+        			id: '1-3',
+        			content: 'Wham!',
+        			placement: 'top',
+        			debug: true
+        		});
+        		return false; // don't follow link
+        	}
+        	
+        	$('.example-3').click(function(e){
+        		$('.example-3').demo({
+        			id					: '1-1',
+        			title				: 'Oh boy, I\'m excited.',
+        			'overlay-style'		:
+        				'position: fixed;'+
+        				'top:0;left:0;bottom:0;right:0;'+
+        				'width:100%;height:100%;'+
+        				'z-index:1040;'+
+        				'background:rgba(178,45,45,0.5);',
+        			'highlight-style'	:
+        				'z-index:1050;'+
+        				'background:rgba(0,0,0,1)!important;',
+        			debug				: true
+        		});
+        		return false; // don't follow link
+        	});
+        	
+            $(function(){
+                $('#home').demo({
+                    id          : 1,
+                    content     : 'Click anywhere inside the <span class="text-error">highlighted</span> area to dismiss this popover.',
+                    placement   : 'bottom'
+                });
+            });
+            /*$(function(){
+                $('.demo-popover').demo({
+                    id				: '2',
+                    placement		: 'right',
+                    content			: 'This is a demo popover for another demo popover.'
+                });
+                $('.demo-popover').last().demo({
+                    id				: '3',
+                    placement		: 'bottom',
+                    content			: '<code>(don\'t try this at home)</code>'
+                    });
+            });
+            function second(){
+                $('.nav-pills li.active a').demo({
+                    id				: '4',
+                    placement		: 'bottom',
+                    content			: 'These babies can be chained by means of the <code>data-callback</code> attribute.',
+                    callback		: 'third();'
+                });
+            }
+            function third(){
+                $('.span6').demo({
+                    id				: '5',
+                    placement		: 'top',
+                    content			: 'Just like <span class="text-warning">this</span>. <i class="icon-heart"></i> chaining.<br><br>They use cookies, so you won\'t need to worry about them showing up every time, either.',
+                    callback		: 'fourth();'
+                });
+            }
+            function fourth(){
+                $('.span6 p').first().demo({
+                    id				: '6',
+                    placement		: 'top',
+                    title			: '<span class="text-error">Are you excited yet?<i class="pull-right icon-warning-sign"></i></span>',
+                    content			: 'You\'ll need:<br><br><a class="btn btn-success" href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> &nbsp; <a href="#" class="btn btn-primary">This script</a>'
+                });
+            }*/
+        </script>
+    </body>
+</html>
