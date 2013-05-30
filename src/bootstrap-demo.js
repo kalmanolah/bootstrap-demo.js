@@ -91,7 +91,9 @@
 	    	'title'						: 'TIP<i class="icon-bell pull-right"></i>',
 	    	'content'					: 'Click this thingy here!',
 	    	'id'						: null,
-	    	'callback'					: 'false',
+	    	'callback'					: function(e) {
+			return;
+		},
 	    	'debug'						: false
 	    }, options);
 	    
@@ -125,21 +127,24 @@
     		// If this element has no background, we need to add one
     		if(!hasBackground(this)) this.addClass('demo-highlight-background');
     		
+		// Cache first of the elements
+		$that = this.first();
+
     		// Create popover on the first of the elements
-    		this.first().popover({
+    		$that.popover({
     			html				: true,
     			placement			: settings['placement'],
     			title				: settings['title'],
     			content				: settings['content']
-    		}).popover('show')
+    		}).popover('show');
     		
     		// Set correct class on popover
-    		.siblings('.popover').addClass('demo-popover');
+    		$('.popover').addClass('demo-popover');
     		
     		// Handle click
     		this.on('click.demo.data-api', function(e){
     			// Remove demo popovers and unbind clicks
-    			$('.demo-popover').siblings().popover('destroy').unbind('.demo.data-api');
+    			$that.popover('destroy').unbind('.demo.data-api');
     			
     			// Remove overlay
     			$('#demo-overlay').remove();
@@ -148,7 +153,7 @@
     			$('.demo-highlight').removeClass('demo-highlight').removeClass('demo-highlight-background').removeClass('demo-highlight-position');
     			
     			// Perform callback
-    			return eval(settings.callback);
+    			return settings.callback(e);
     		});
     	}
     	
