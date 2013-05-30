@@ -123,8 +123,18 @@ $('#home .btn-success').demo({
 		id		: '1-1',
 		content		: 'Are you ready for some chaining?',
 		placement	: 'left',
-		callback	: 'example21();'
+		callback	: function(e) {
+			example21();
+
+			// Don't follow link
+			e.preventDefault(true);
+			return false;
+		}
 	});
+
+	// Don't follow link
+	e.preventDefault(true);
+	return false;
 });
 
 function example21(){
@@ -132,9 +142,14 @@ function example21(){
 		id		: '1-2',
 		content		: 'Here goes...',
 		placement	: 'top',
-		callback	: 'example22();'
+		callback	: function(e) {
+			example22();
+
+			// Don't follow link
+			e.preventDefault(true);
+			return false;
+		}
 	});
-	return false; // don't follow link
 }
 
 function example22(){
@@ -143,7 +158,6 @@ function example22(){
 		content		: 'Wham!',
 		placement	: 'top'
 	});
-	return false; // don't follow link
 }</code></pre>
 							<a href="#" class="btn btn-success example-2">Run</a><br><br>
 							
@@ -162,7 +176,10 @@ function example22(){
 			'z-index:1050;'+
 			'background:rgba(255,255,255,1);'
 	});
-	return false; // don't follow link
+
+	// Don't follow link
+	e.preventDefault(true);
+	return false;
 });</code></pre>
 							<a href="#" class="btn btn-success example-3">Run</a><br><br>
                         </div>
@@ -224,7 +241,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         			content: 'Are you ready for some chaining?',
         			placement: 'left',
         			debug: true,
-        			callback: 'example21();'
+        			callback: function(e) {
+					example21();
+
+					// Don't follow link
+					e.preventDefault(true);
+					return false;
+				}
         		});
         	});
         	
@@ -234,7 +257,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         			content: 'Here goes...',
         			placement: 'top',
         			debug: true,
-        			callback: 'example22();'
+        			callback: function(e) {
+					example22();
+
+					// Don't follow link
+					e.preventDefault(true);
+					return false;
         		});
         		return false; // don't follow link
         	}
@@ -246,7 +274,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         			placement: 'top',
         			debug: true
         		});
-        		return false; // don't follow link
+
+			// Don't follow link
+			e.preventDefault(true);
+        		return false;
         	}
         	
         	$('.example-3').click(function(e){
@@ -264,7 +295,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         				'background:rgba(0,0,0,1)!important;',
         			debug				: true
         		});
-        		return false; // don't follow link
+
+			// Don't follow link
+			e.preventDefault(true);
+        		return false;
         	});
         	
             $(function(){
@@ -274,42 +308,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     placement   : 'bottom'
                 });
             });
-            /*$(function(){
-                $('.demo-popover').demo({
-                    id				: '2',
-                    placement		: 'right',
-                    content			: 'This is a demo popover for another demo popover.'
-                });
-                $('.demo-popover').last().demo({
-                    id				: '3',
-                    placement		: 'bottom',
-                    content			: '<code>(don\'t try this at home)</code>'
-                    });
-            });
-            function second(){
-                $('.nav-pills li.active a').demo({
-                    id				: '4',
-                    placement		: 'bottom',
-                    content			: 'These babies can be chained by means of the <code>data-callback</code> attribute.',
-                    callback		: 'third();'
-                });
-            }
-            function third(){
-                $('.span6').demo({
-                    id				: '5',
-                    placement		: 'top',
-                    content			: 'Just like <span class="text-warning">this</span>. <i class="icon-heart"></i> chaining.<br><br>They use cookies, so you won\'t need to worry about them showing up every time, either.',
-                    callback		: 'fourth();'
-                });
-            }
-            function fourth(){
-                $('.span6 p').first().demo({
-                    id				: '6',
-                    placement		: 'top',
-                    title			: '<span class="text-error">Are you excited yet?<i class="pull-right icon-warning-sign"></i></span>',
-                    content			: 'You\'ll need:<br><br><a class="btn btn-success" href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> &nbsp; <a href="#" class="btn btn-primary">This script</a>'
-                });
-            }*/
         </script>
     </body>
 </html>
