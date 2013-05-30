@@ -265,7 +265,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					return false;
 				}
         		});
-        		return false; // don't follow link
+
+			// Don't follow link
+			e.preventDefault(true);
+        		return false;
         	}
         	
         	function example22(){
@@ -275,10 +278,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         			placement: 'top',
         			debug: true
         		});
-
-			// Don't follow link
-			e.preventDefault(true);
-        		return false;
         	}
         	
         	$('.example-3').click(function(e){
