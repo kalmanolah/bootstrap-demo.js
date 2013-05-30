@@ -224,14 +224,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         			id: '1-1',
         			content: 'This is the first demo!',
         			placement: 'bottom',
-        			debug: true
+        			debug: true,
+				callback: function(e) {
+					// Don't follow link
+					e.preventDefault(true);
+					return false;
+				}
         		});
 
         		$('#home .btn-success').demo({
         			id: '1-2',
         			content: 'This is the second one!',
         			placement: 'top',
-        			debug: true
+        			debug: true,
+				callback: function(e) {
+					// Don't follow link
+					e.preventDefault(true);
+					return false;
+				}
         		});
         	});
         	
@@ -301,7 +311,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 $('#home').demo({
                     id          : 1,
                     content     : 'Click anywhere inside the <span class="text-error">highlighted</span> area to dismiss this popover.',
-                    placement   : 'bottom'
+                    placement   : 'bottom',
+		    callback	: function(e) {
+			// Don't follow link
+			e.preventDefault(true);
+			return false;
+		    }
                 });
             });
         </script>
