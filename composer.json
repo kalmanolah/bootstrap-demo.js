@@ -1,0 +1,16 @@
+{
+    "name" : "kalmanolah/bootstrap-demo.js",
+    "description" : "An unofficial extension for Twitter Bootstrap that adds 'demo' functionality: the ability to easily create tutorials and demos for your application's users.",
+    "authors" : [{
+        "name" : "Kalman Olah",
+        "email" : "hello@kalmanolah.net"
+    }],
+    "homepage": "https://github.com/kalmanolah/bootstrap-demo.js",
+    "keywords" : [
+        "bootstrap",
+        "demo"
+    ],
+    "license" : [
+        "MIT"
+    ]
+}
