@@ -20,7 +20,7 @@ Demo = function() {
         placement:       'auto',
         title:           '<i class="glyphicon glyphicon-bell"></i> TIP',
         content:         'Click anywhere inside of the <span class="text-danger">highlighted</span> area to dismiss this popup.',
-        styles:          '.demo-highlight{border-color:transparent!important;background-color:#FFCC00!important;background-image:repeating-linear-gradient(45deg,transparent,transparent 35px,#FBB829 35px,#FBB829 70px)!important;}',
+        styles:          '.demo-highlight{cursor:pointer;outline:3px solid #FBB829;}',
     };
 
     /**
@@ -128,8 +128,6 @@ Demo = function() {
 
         jQuery('head').append('<style id="demo-styles" type="text/css">' + this.options.styles + '</style>');
     };
-
-    this.addStyles();
 };
 
 (function($) {
@@ -140,10 +138,10 @@ Demo = function() {
 
         // If we're already showing a demo, do nothing
         if (demo.showing) {
-            return;
+            return this;
         }
 
-        $.extend(demo.options, options);
+        $.extend(demo.options, this.data(), options);
 
         // Only execute if we haven't shown this demo yet
         if (demo.isDemoSeen(demo.options.id)) {
@@ -153,7 +151,8 @@ Demo = function() {
         // Mark as seen
         demo.setDemoSeen(demo.options.id);
 
-        // Add highlight class
+        // Add highlight styling and class
+        demo.addStyles();
         this.addClass('demo-highlight');
 
         var all = this;
@@ -170,9 +169,8 @@ Demo = function() {
         // Add event blockers if needed
         if (demo.options.prevent_default) {
             setTimeout(function() {
-                // $(document).on('click.demo, mousewheel.demo, DOMMouseScroll.demo, submit.demo', false);
-                $(document).on('click.demo, submit.demo', false);
                 demo.showing = true;
+                $(document).on('click.demo, submit.demo, mousedown.demo, change.demo', false);
             }, 0);
         }
 
@@ -185,13 +183,17 @@ Demo = function() {
             all.removeClass('demo-highlight');
 
             // Remove event blockers
-            // $(document).off('click.demo, mousewheel.demo, DOMMouseScroll.demo, submit.demo');
-            $(document).off('click.demo, submit.demo');
             demo.showing = false;
+            $(document).off('click.demo, submit.demo, mousedown.demo, change.demo');
 
-            // Perform callback if required
+            // If callback is set and a string, assume it's a selector and call $.demo on it.
+            // If callback is set and not a string, assume it's a function, pass it the event and run it.
             if (demo.options.callback) {
-                demo.options.callback(e);
+                if (typeof demo.options.callback == 'string') {
+                    $(demo.options.callback).demo();
+                } else {
+                    demo.options.callback(e);
+                }
             }
 
             return !demo.options.prevent_default;
@@ -203,8 +205,7 @@ Demo = function() {
     // Data API support
     $(document).ready(function() {
         $('[data-provide="demo"]').each(function(e) {
-            var $this = $(this);
-            $this.demo($this.data());
+            $(this).demo();
         });
     });
 })(jQuery);
