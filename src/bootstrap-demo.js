@@ -136,20 +136,22 @@ Demo = function() {
     window.demo = new Demo();
 
     $.fn.demo = function(options) {
+        var demo = $.extend(true, {}, demo);
+
         // If we're already showing a demo, do nothing
         if (demo.showing) {
             return;
         }
 
-        var options = $.extend({}, demo.options, options);
+        $.extend(demo.options, options);
 
         // Only execute if we haven't shown this demo yet
-        if (demo.isDemoSeen(options.id)) {
+        if (demo.isDemoSeen(demo.options.id)) {
             return this;
         }
 
         // Mark as seen
-        demo.setDemoSeen(options.id);
+        demo.setDemoSeen(demo.options.id);
 
         // Add highlight class
         this.addClass('demo-highlight');
@@ -159,14 +161,14 @@ Demo = function() {
 
         // Create popover on the first of the elements
         first.popover({
-            html:      options.html,
-            placement: options.placement,
-            title:     options.title,
-            content:   options.content
+            html:      demo.options.html,
+            placement: demo.options.placement,
+            title:     demo.options.title,
+            content:   demo.options.content
         }).popover('show');
 
         // Add event blockers if needed
-        if (options.prevent_default) {
+        if (demo.options.prevent_default) {
             setTimeout(function() {
                 // $(document).on('click.demo, mousewheel.demo, DOMMouseScroll.demo, submit.demo', false);
                 $(document).on('click.demo, submit.demo', false);
@@ -188,11 +190,11 @@ Demo = function() {
             demo.showing = false;
 
             // Perform callback if required
-            if (options.callback) {
-                options.callback(e);
+            if (demo.options.callback) {
+                demo.options.callback(e);
             }
 
-            return !options.prevent_default;
+            return !demo.options.prevent_default;
         });
 
         return this;
@@ -206,5 +208,3 @@ Demo = function() {
         });
     });
 })(jQuery);
-
-
