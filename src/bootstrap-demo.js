@@ -136,7 +136,7 @@ Demo = function() {
     window.demo = new Demo();
 
     $.fn.demo = function(options) {
-        var demo = $.extend(true, {}, demo);
+        var demo = $.extend(true, {}, window.demo);
 
         // If we're already showing a demo, do nothing
         if (demo.showing) {
